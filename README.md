@@ -65,6 +65,19 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+### 6. Configure Environment Variables (Optional)
+
+For production or custom configuration:
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env and set your SECRET_KEY and other settings
+```
+
+**Important for Production:** Always set a unique `SECRET_KEY` in your environment variables or `.env` file. Never use the default key in production!
+
 ## 🏃 Development Workflow
 
 ### Running the Development Server
@@ -142,6 +155,30 @@ module.exports = {
 
 ## 📦 Building for Production
 
+### Environment Configuration
+
+Before deploying to production:
+
+1. **Set Environment Variables:**
+   ```bash
+   export SECRET_KEY="your-unique-secret-key-here"
+   export DEBUG="False"
+   export ALLOWED_HOSTS="yourdomain.com,www.yourdomain.com"
+   ```
+
+2. **Or use a `.env` file** (recommended):
+   ```bash
+   cp .env.example .env
+   # Edit .env with your production settings
+   ```
+
+3. **Generate a secure SECRET_KEY:**
+   ```python
+   python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+   ```
+
+### Build and Deploy
+
 ```bash
 # Build optimized CSS
 npm run build
@@ -150,6 +187,8 @@ npm run build
 python manage.py collectstatic --noinput
 ```
 
+**Security Reminder:** Never commit your `.env` file or expose your `SECRET_KEY` in version control!
+
 ## 🔍 Key Configuration Files
 
 ### Django Settings (`config/settings.py`)
@@ -157,6 +196,7 @@ python manage.py collectstatic --noinput
 - `STATICFILES_DIRS`: Points to `static/` for development
 - `STATIC_ROOT`: Points to `staticfiles/` for production
 - `TEMPLATES['DIRS']`: Includes global `templates/` directory
+- `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`: Configured via environment variables (with safe defaults for development)
 
 ### Tailwind Config (`tailwind.config.js`)
 
