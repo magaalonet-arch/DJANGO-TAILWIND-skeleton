@@ -1,0 +1,27 @@
+{
+  "name": "django-tailwind-skeleton",
+  "version": "1.0.0",
+  "description": "A clean starter template for Django 5 projects with integrated Tailwind CSS workflow using Node-based Tailwind for full Django 5+ compatibility",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify"
+  },
+  "keywords": [
+    "django",
+    "tailwind",
+    "tailwindcss",
+    "django5",
+    "starter",
+    "template",
+    "skeleton",
+    "boilerplate"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19"
+  }
+}
